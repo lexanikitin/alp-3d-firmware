@@ -2,7 +2,7 @@
 
 Централизованный репозиторий прошивок, конфигураций железа, макросов и сетевых настроек **Klipper + Moonraker** для парка 3D-принтеров **Alpaca 3D Farm**.
 
-Связанный репозиторий слайсера и профилей: [lexanikitin/alp-3d-lab](https://github.com/lexanikitin/alp-3d-lab)
+Связанный репозиторий слайсера и профилей: [lexanikitin/alp-3d-profiles](https://github.com/lexanikitin/alp-3d-profiles)
 
 ---
 
@@ -43,10 +43,10 @@
 Каждый принтер отслеживает этот репозиторий через Moonraker. В `moonraker.conf` хоста прописан блок:
 
 ```ini
-[update_manager alp-klipper-printers]
+[update_manager alp-3d-firmware]
 managed_services: klipper
-origin: https://github.com/lexanikitin/alp-klipper-printers.git
-path: /home/aniki/alp-klipper-printers
+origin: https://github.com/lexanikitin/alp-3d-firmware.git
+path: /home/aniki/alp-3d-firmware
 primary_branch: main
 type: git_repo
 ```
