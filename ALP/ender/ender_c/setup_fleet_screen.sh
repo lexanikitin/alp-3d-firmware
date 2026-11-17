@@ -85,14 +85,13 @@ if [ ! -d "${USER_HOME}/KlipperScreen" ]; then
     sudo -u aniki git clone https://github.com/KlipperScreen/KlipperScreen.git "${USER_HOME}/KlipperScreen"
 fi
 
-# Запуск официального скрипта инсталляции под пользователем aniki
-sudo -u aniki bash "${USER_HOME}/KlipperScreen/scripts/KlipperScreen-install.sh" || true
+# Запуск официального скрипта инсталляции под пользователем aniki (non-interactive, no reboot)
+sudo -u aniki env SERVICE=y BACKEND=X NETWORK=n START=0 bash "${USER_HOME}/KlipperScreen/scripts/KlipperScreen-install.sh"
 
 # 6. Конфигурация мультипринтерного шлюза
 echo "📝 [5/6] Развертывание KlipperScreen.conf для фермы..."
 mkdir -p "${CONFIG_DIR}"
-cp "${SCRIPT_DIR}/KlipperScreen.conf" "${CONFIG_DIR}/KlipperScreen.conf"
-chown aniki:aniki "${CONFIG_DIR}/KlipperScreen.conf"
+ln -sf "${SCRIPT_DIR}/KlipperScreen.conf" "${CONFIG_DIR}/KlipperScreen.conf"
 
 # Перезапуск KlipperScreen
 systemctl daemon-reload
@@ -119,3 +118,4 @@ free -h
 echo "===================================================================="
 echo "🎉 Готово! Экран Ender C настроен для управления Ender A, B и C."
 echo "===================================================================="
+
