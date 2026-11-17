@@ -24,16 +24,17 @@ fi
 
 # 2. Настройка ZRAM и sysctl (защита от свопа на MicroSD)
 echo "📦 [1/6] Настройка ZRAM и параметров виртуальной памяти..."
-if ! command -v zramswap >/dev/null 2>&1; then
-    apt-get update -qq
-    apt-get install -y -qq zram-tools
-fi
-
-# Настройка размера zram (512 МБ сжатой памяти)
-if [ -f /etc/default/zramswap ]; then
-    sed -i 's/^#*ALLOCATION=.*/ALLOCATION=512/' /etc/default/zramswap
-    sed -i 's/^#*ALGO=.*/ALGO=lz4/' /etc/default/zramswap
-    systemctl restart zramswap || true
+if [ ! -b /dev/zram0 ]; then
+    if ! command -v zramswap >/dev/null 2>&1; then
+        apt-get install -y -qq zram-tools
+    fi
+    if [ -f /etc/default/zramswap ]; then
+        sed -i 's/^#*ALLOCATION=.*/ALLOCATION=512/' /etc/default/zramswap
+        sed -i 's/^#*ALGO=.*/ALGO=lz4/' /etc/default/zramswap
+        systemctl restart zramswap || true
+    fi
+else
+    echo "  - ZRAM (/dev/zram0) уже активирован на уровне ОС Orange Pi."
 fi
 
 # Применение sysctl (swappiness=10)
@@ -69,6 +70,10 @@ DEBIAN_FRONTEND=noninteractive apt-get install -y -qq \
     xinit \
     xinput \
     x11-xserver-utils \
+    xserver-xorg-input-evdev \
+    xserver-xorg-input-libinput \
+    xserver-xorg-legacy \
+    xserver-xorg-video-fbdev \
     libgtk-3-0 \
     python3-virtualenv \
     virtualenv \
