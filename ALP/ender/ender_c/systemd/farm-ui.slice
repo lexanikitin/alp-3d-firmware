@@ -1,0 +1,15 @@
+[Unit]
+Description=Alpaca 3D Farm UI Resource Slice (KlipperScreen & X11)
+Before=slices.target
+
+[Slice]
+# Ограничение памяти для предотвращения OOM на хосте с 1 ГБ RAM
+MemoryAccounting=true
+MemoryHigh=300M
+MemoryMax=500M
+
+# Ограничение CPU: не более 60% мощности (выделено на ядра 2 и 3)
+CPUAccounting=true
+CPUQuota=60%
+CPUWeight=20
+IOWeight=20
