@@ -10,9 +10,9 @@
 
 | Принтер | Модель | Сопло | Статус | Архитектурный паттерн |
 | :--- | :--- | :---: | :---: | :--- |
-| **Ender 3 S1 Pro (A)** | Creality Ender-3 S1 Pro | 0.4 мм | 🟢 **ACTIVE** | Общее ядро `ender/common` + оверрайды A |
-| **Ender 3 S1 Pro (B)** | Creality Ender-3 S1 Pro | 0.4 мм | 🟡 **ASSEMBLY** | Общее ядро `ender/common` + оверрайды B |
-| **Ender 3 S1 Pro (C)** | Creality Ender-3 S1 Pro | 0.4 мм | 🟡 **ASSEMBLY** | Общее ядро `ender/common` + оверрайды C |
+| **Ender 3 S1 Pro (A)** | Creality Ender-3 S1 Pro | 0.4 мм Brass | 🟢 **ACTIVE** | Общее ядро `ender/common` + оверрайды A |
+| **Ender 3 S1 Pro (B)** | Creality Ender-3 S1 Pro | 0.4 мм Brass | 🟢 **ACTIVE** | Общее ядро `ender/common` + оверрайды B |
+| **Ender 3 S1 Pro (C)** | Creality Ender-3 S1 Pro | 0.6 мм Steel | 🟢 **ACTIVE** | Общее ядро `ender/common` + сопло 0.6 мм сталь |
 | **Voron 2.4 350 (D)** | Voron 2.4 350 CoreXY | 0.6 мм CHT | 🟢 **ACTIVE** | Изолированная конфигурация `voron_d` |
 | **Voron 2.4 350 (A)** | Voron 2.4 350 CoreXY | 0.4 мм | 🟡 **ASSEMBLY** | Изолированная конфигурация `voron_a` |
 | **Voron 2.4 350 (B)** | Voron 2.4 350 CoreXY | 0.4 мм | 🟡 **ASSEMBLY** | Изолированная конфигурация `voron_b` |

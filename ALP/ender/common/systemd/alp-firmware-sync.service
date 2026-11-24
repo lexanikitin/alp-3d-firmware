@@ -1,0 +1,19 @@
+[Unit]
+Description=Alpaca 3D Farm — Auto-pull Firmware on Boot
+Documentation=https://github.com/lexanikitin/alp-3d-firmware
+After=network-online.target
+Wants=network-online.target
+Before=klipper.service
+
+[Service]
+Type=oneshot
+User=aniki
+Group=aniki
+ExecStart=/bin/bash -c 'if [ -f /home/aniki/alp-3d-firmware/ALP/ender/common/systemd/sync_firmware_on_boot.sh ]; then /bin/bash /home/aniki/alp-3d-firmware/ALP/ender/common/systemd/sync_firmware_on_boot.sh; elif [ -f /home/aniki/alp-klipper-printers/ALP/ender/common/systemd/sync_firmware_on_boot.sh ]; then /bin/bash /home/aniki/alp-klipper-printers/ALP/ender/common/systemd/sync_firmware_on_boot.sh; fi'
+TimeoutStartSec=15
+RemainAfterExit=yes
+StandardOutput=journal+console
+StandardError=journal+console
+
+[Install]
+WantedBy=multi-user.target
