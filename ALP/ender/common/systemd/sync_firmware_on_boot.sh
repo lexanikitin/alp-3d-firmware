@@ -8,9 +8,11 @@
 
 set -u
 
+USER_HOME="${HOME:-$(getent passwd "$(id -un)" | cut -d: -f6)}"
+
 # Поиск пути к репозиторию (поддержка обоих путей: alp-3d-firmware и alp-klipper-printers)
 REPO_DIR=""
-for candidate in "/home/aniki/alp-3d-firmware" "/home/aniki/alp-klipper-printers"; do
+for candidate in "${USER_HOME}/alp-3d-firmware" "${USER_HOME}/alp-klipper-printers"; do
     if [ -d "$candidate/.git" ]; then
         REPO_DIR="$candidate"
         break
