@@ -235,6 +235,21 @@ systemctl is-enabled unattended-upgrades apt-daily.timer apt-daily-upgrade.timer
 
      ![Katapult menuconfig для платы головы EBBCan RP2040 (Voron B/C/D)](docs/images/katapult_menuconfig_ebb_rp2040.jpg)
 
+   - **Сборка Klipper для платы головы (`EBBCan`, RP2040 — валидно для `Voron B`, `C`, `D`)**:
+     ```bash
+     cd ~/klipper && make menuconfig
+     ```
+     Параметры `Klipper Firmware Configuration`:
+     - `[*] Enable extra low-level configuration options`
+     - Micro-controller Architecture: `Raspberry Pi RP2040`
+     - Bootloader offset: `16KiB bootloader`
+     - Communication interface: `CAN bus`
+     - `(4) CAN RX gpio number`
+     - `(5) CAN TX gpio number`
+     - `(1000000) CAN bus speed`
+
+     ![Klipper menuconfig для платы головы EBBCan RP2040 (Voron B/C/D)](docs/images/klipper_menuconfig_ebb_rp2040.png)
+
    - **Прошивка Klipper на MCU по CAN через `flashtool.py`** (чтобы версии хоста и всех плат совпадали):
      ```bash
      sudo systemctl stop klipper
