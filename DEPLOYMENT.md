@@ -202,6 +202,22 @@ systemctl is-enabled unattended-upgrades apt-daily.timer apt-daily-upgrade.timer
         ```bash
         ls /dev/serial/by-id/
         ```
+   - **Сборка и прошивка Klipper на основную плату (USB-to-CAN bridge, пример: BTT Octopus PRO / STM32F446)**:
+     ```bash
+     cd ~/klipper && make menuconfig
+     ```
+     Параметры `Klipper Firmware Configuration`:
+     - `[*] Enable extra low-level configuration options`
+     - Micro-controller Architecture: `STMicroelectronics STM32`
+     - Processor model: `STM32F446`
+     - Bootloader offset: `32KiB bootloader`
+     - Clock Reference: `12 MHz crystal`
+     - Communication interface: `USB to CAN bus bridge (USB on PA11/PA12)`
+     - CAN bus interface: `CAN bus (on PD0/PD1)`
+     - `(1000000) CAN bus speed`
+
+     ![Klipper menuconfig для BTT Octopus PRO (USB to CAN bus bridge)](docs/images/klipper_menuconfig_octopus_pro_can_bridge.png)
+
    - **Прошивка Klipper на MCU по CAN через `flashtool.py`** (чтобы версии хоста и всех плат совпадали):
      ```bash
      sudo systemctl stop klipper
