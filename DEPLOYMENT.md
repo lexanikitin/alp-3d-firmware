@@ -218,6 +218,23 @@ systemctl is-enabled unattended-upgrades apt-daily.timer apt-daily-upgrade.timer
 
      ![Klipper menuconfig для BTT Octopus PRO (USB to CAN bus bridge)](docs/images/klipper_menuconfig_octopus_pro_can_bridge.png)
 
+   - **Загрузчик Katapult для платы головы (`EBBCan`, RP2040 — валидно для `Voron B`, `C`, `D`)**:
+     ```bash
+     cd ~/katapult && make menuconfig
+     ```
+     Параметры `Katapult Configuration`:
+     - Micro-controller Architecture: `Raspberry Pi RP2040`
+     - Flash chip: `W25Q080 with CLKDIV 2`
+     - Build Katapult deployment application: `16KiB bootloader`
+     - Communication interface: `CAN bus`
+     - `(4) CAN RX gpio number`
+     - `(5) CAN TX gpio number`
+     - `(1000000) CAN bus speed`
+     - `[*] Support bootloader entry on rapid double click of reset button`
+     - `[*] Enable Status LED` → `(gpio26) Status LED GPIO Pin`
+
+     ![Katapult menuconfig для платы головы EBBCan RP2040 (Voron B/C/D)](docs/images/katapult_menuconfig_ebb_rp2040.jpg)
+
    - **Прошивка Klipper на MCU по CAN через `flashtool.py`** (чтобы версии хоста и всех плат совпадали):
      ```bash
      sudo systemctl stop klipper
